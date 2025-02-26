@@ -1,24 +1,20 @@
 {
-  "publisher": "antfu",
+  "publisher": "Northseacoder",
   "name": "ext-name",
   "displayName": "ext-name",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "Northseacoder",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/ext-name#readme",
+  "homepage": "https://github.com/Northseacoder/ext-name#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antfu/ext-name"
+    "url": "https://github.com/Northseacoder/ext-name"
   },
   "bugs": {
-    "url": "https://github.com/antfu/ext-name/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/antfu"
+    "url": "https://github.com/Northseacoder/ext-name/issues"
   },
   "categories": [
     "Other"
@@ -45,6 +41,7 @@
     }
   },
   "scripts": {
+    "cz": "git add . && git-cz",
     "build": "tsup src/index.ts --external vscode",
     "dev": "nr build --watch --sourcemap",
     "prepare": "nr update",
@@ -64,6 +61,8 @@
     "@types/vscode": "^1.97.0",
     "@vscode/vsce": "^3.2.2",
     "bumpp": "^10.0.3",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.20.1",
     "esno": "^4.8.0",
     "pnpm": "^10.4.1",
@@ -78,5 +77,10 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  }
+  },
+  "config": {
+    "commitizen": {
+        "path": "cz-conventional-changelog"
+    }
+}
 }
