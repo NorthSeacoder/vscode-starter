@@ -11,4 +11,4 @@ logs
 node_modules
 temp
 src/generated
-prd/*
+prd
