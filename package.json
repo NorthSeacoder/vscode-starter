@@ -24,7 +24,8 @@
   "files": [
     "LICENSE.md",
     "dist/*",
-    "res/*"
+    "res/*",
+    "webview/dist/*"
   ],
   "engines": {
     "vscode": "^1.97.0"
@@ -33,7 +34,30 @@
     "onStartupFinished"
   ],
   "contributes": {
-    "commands": [],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "view-explorer",
+          "title": "Demo",
+          "icon": "res/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "view-explorer": [
+        {
+          "id": "webviewExample",
+          "type": "webview",
+          "name": "view Demo"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.openWebview",
+        "title": "Open Webview Example"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "ext-name",
@@ -43,8 +67,9 @@
   "scripts": {
     "cz": "git add . && git-cz",
     "clear": "rimraf dist",
-    "build": "nr clear && env NODE_ENV=production tsup",
-    "dev": "env NODE_ENV=development nr build",
+    "build": "nr clear && concurrently \"env NODE_ENV=production tsup\" \"nr -F view build\"",
+    "build:view": "nr -F view build",
+    "dev": "concurrently \"env NODE_ENV=development nr build --watch\" \"nr -F view build --watch\"",
     "prepare": "nr update",
     "update": "vscode-ext-gen --output src/generated/meta.ts",
     "lint": "eslint . --fix",
@@ -63,6 +88,7 @@
     "@vscode/vsce": "^3.2.2",
     "bumpp": "^10.0.3",
     "commitizen": "^4.3.1",
+    "concurrently": "^9.1.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.20.1",
     "esno": "^4.8.0",
@@ -71,7 +97,7 @@
     "rimraf": "^6.0.1",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
-    "vite": "^6.1.0",
+    "vite": "^6.2.1",
     "vitest": "^3.0.5",
     "vscode-ext-gen": "^1.0.0"
   },
@@ -84,5 +110,9 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@testing-library/svelte": "^5.2.7"
   }
 }
