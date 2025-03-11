@@ -1,0 +1,13 @@
+name: Ignore Webview Pushes
+
+on:
+  push:
+    branches:
+      - webview
+
+jobs:
+  silent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: No-op
+        run: echo "Webview branch push ignored on GitHub UI"
